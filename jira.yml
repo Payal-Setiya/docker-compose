@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  jira:
+    image: blacklabelops/jira
+    container_name: jira
+    hostname: jira
+    restart: unless-stopped
+    networks:
+      - atlassiannet
+    volumes:
+      - jiradata:/var/atlassian/jira
+    ports:
+      - '8085:8080'
+   
+volumes:
+  jiradata:
+    external: true
+
+networks:
+  atlassiannet:
+    external:
+      name: network-atlassian
